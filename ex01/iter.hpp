@@ -1,5 +1,4 @@
-#ifndef	ITER_HPP
-# define ITER_HPP
+#include <iostream>
 
 template<typename T>
 void prnt(T const &t)
@@ -8,11 +7,10 @@ void prnt(T const &t)
 }
 
 template<typename A, typename L, typename F>
-void iter(A array, L lenght, F func(T const &))
+void iter(A array, L lenght, F func)
 {
     int i = 0;
     while(i < lenght)
         func(array[i++]);
 }
 
-#endif
