@@ -1,7 +1,8 @@
 NAME		=	test
 
-SRC			=	main.cpp\
-				Array.tpp
+SRC			=	main.cpp
+
+TMP			=	Array.tpp
 
 HDS			=	Array.hpp
 
@@ -10,7 +11,7 @@ OBJ			=	$(SRC:.cpp=.o)
 CC			=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
 
-%.o:	%.cpp %.tpp
+%.o:	%.cpp %.tpp %.hpp
 		$(CC) ${CFLAGS} -o $@ -c $<
 
 $(NAME)		:	$(OBJ) $(HDS)
@@ -19,7 +20,7 @@ $(NAME)		:	$(OBJ) $(HDS)
 all			:	$(NAME)
 
 clean		:
-		@rm -rf
+		@rm -rf  $(OBJ)
 
 fclean		:	clean
 		@rm -rf $(NAME) $(OBJ)

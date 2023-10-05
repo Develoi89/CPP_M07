@@ -4,33 +4,46 @@ template<typename T>
 Array<T>::ioob::ioob(): std::runtime_error("index is out of bounds."){}
 
 template<typename T>
-Array<T>::Array()
+Array<T>::Array(): _s(0)
 {
 }
 
 template<typename T>
-Array<T>::Array(unsigned int i)
+const int Array<T>::size()
+{
+    return _s;
+}
+
+template<typename T>
+Array<T>::Array(unsigned int i): _ar(new T[i]), _s(i)
 {
 }
 
 template<typename T>
-Array<T>  & Array<T>::operator = (Array const &c)
+Array<T>::Array(const Array<T> &c): _ar(new T[c._s]), _s(c._s)
 {
+}
+
+template<typename T>
+Array<T>  & Array<T>::operator = (const Array<T> &c)
+{
+    if(_ar)
+        delete _ar;
+    _ar = new T[c._s];
+    _s = c._s;
+    return *this;
 }
 
 template<typename T>
 T       & Array<T>::operator [] (const int i)
 {
-    if (i < 0 || i >= this.size())
+    if (i < 0 || i >= _s)
         throw ioob();
-    return *this->_ar[i];
+    return this->_ar[i];
 }
 
 template<typename T>
-int Array<T>::size()
+Array<T>::~Array()
 {
-    int i = 0;
-    while(this._ar[i])
-        i++;
-    return i;
+    delete _ar;
 }

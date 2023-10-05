@@ -6,21 +6,22 @@ template<typename T>
 class Array
 {
     private:
-        T   _ar;
+        T   *_ar;
+        unsigned int _s;
     public:
         Array();
         Array(unsigned int i);
-        Array(Array const &c);
-        Array   &operator = (Array const &c);
+        Array(const Array<T> &c);
+        Array   &operator = (const Array<T> &c);
         T       &operator [] (const int i);
 
+        const int size();
         class ioob: public std::runtime_error
         {
             public:
                 ioob();
         };
-        int size();
-
+        ~Array();
 };
 
 #endif
