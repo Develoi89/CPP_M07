@@ -23,6 +23,11 @@ int main(int, char**)
         std::cout <<  test[42] << std::endl;
     }
 
+    Array<int> copy = numbers;
+    copy[42] = 42;
+    std::cout <<  numbers[42] << std::endl;
+    std::cout <<  copy[42] << std::endl;
+
     for (int i = 0; i < MAX_VAL; i++)
     {
         if (mirror[i] != numbers[i])
